@@ -22,5 +22,41 @@ namespace TestC.Controllers
         {
             return View(new List<Product>());
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Product product)
+        {
+            products.Add(product);
+            product.ProductId =
+                products.Select(m => m.ProductId).Max() + 1;
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit(long id)
+        {
+            return View(products.Where(
+                m => m.ProductId == id).First());
+        }
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Product product)
+        {
+            products.Remove(products.Where(
+                c => c.ProductId == product.ProductId).First());
+            products.Add(product);
+            return RedirectToAction("Index");
+        }
     }
+
+
+
 }
