@@ -8,7 +8,7 @@ namespace TestC.Controllers
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public int ProductIds { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public string Brand { get; set; }
