@@ -20,7 +20,7 @@ namespace TestC.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View(new List<Product>());
+            return View(products);
         }
 
         public ActionResult Create()
@@ -55,6 +55,26 @@ namespace TestC.Controllers
             products.Add(product);
             return RedirectToAction("Index");
         }
+        public ActionResult Details(long id)
+        {
+            return View(products.Where(
+                            m => m.ProductId == id).First());
+        }
+        public ActionResult Delete(long id)
+        {
+            return View(products.Where(
+                            m => m.ProductId == id).First());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Product product)
+        {
+            products.Remove(products.Where(
+                            c => c.ProductId == product.ProductId)
+                            .First());
+            return RedirectToAction("Index");
+        }
+
     }
 
 
