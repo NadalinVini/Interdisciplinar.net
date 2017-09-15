@@ -42,10 +42,7 @@ namespace TestC.Controllers
             return View(products.Where(
                 m => m.ProductId == id).First());
         }
-        public ActionResult Edit()
-        {
-            return View();
-        }
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product product)
@@ -65,15 +62,14 @@ namespace TestC.Controllers
             return View(products.Where(
                             m => m.ProductId == id).First());
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        [ValidateAntiForgeryToken]
         public ActionResult Delete(Product product)
         {
             products.Remove(products.Where(
                             c => c.ProductId == product.ProductId)
                             .First());
             return RedirectToAction("Index");
-        }
+        }
 
     }
 
