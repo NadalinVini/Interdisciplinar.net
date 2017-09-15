@@ -12,7 +12,7 @@ namespace TestC.Controllers
         {
             new Product() { ProductId = 1, Name = "Gtx 1080", Type = "Placa de video", Brand = "Nvidea", Price = 1200},
             new Product() { ProductId = 2, Name = "H110", Type = "Placa mãe", Brand = "Asus", Price = 500},
-            new Product() { ProductId = 3, Name = "RazerPad", Type = "MousePad", Brand = "Razer", Price = 70},
+            new Product() { ProductId = 3, Name = "RazzerPad", Type = "MousePad", Brand = "Razzer", Price = 70},
             new Product() { ProductId = 4, Name = "i5 7k", Type = "Processador", Brand = "Intel", Price = 800},
             new Product() { ProductId = 5, Name = "Fonte 500W", Type = "Fonte", Brand = "Corsair", Price = 300},
         };
