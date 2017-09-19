@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TestC.Context;
+using TestC.Models;
 
 namespace TestC.Controllers
 {
     public class ProductsController : Controller
     {
-        private static IList<Product> products = new List<Product>()
-        {
-            new Product() { ProductId = 1, Name = "Gtx 1080", Type = "Placa de video", Brand = "Nvidea", Price = 1200},
-            new Product() { ProductId = 2, Name = "H110", Type = "Placa mãe", Brand = "Asus", Price = 500},
-            new Product() { ProductId = 3, Name = "RazerPad", Type = "MousePad", Brand = "Razer", Price = 70},
-            new Product() { ProductId = 4, Name = "i5 7k", Type = "Processador", Brand = "Intel", Price = 800},
-            new Product() { ProductId = 5, Name = "Fonte 500W", Type = "Fonte", Brand = "Corsair", Price = 300},
-        };
-
-        // GET: Product
+        private EFContext context = new EFContext();
+        // GET: Products
         public ActionResult Index()
         {
-            return View(products);
+            return View(context.Products.OrderBy(
+            c => c.Name));
         }
-
+        // GET: Products/Create
         public ActionResult Create()
         {
             return View();
@@ -32,47 +29,84 @@ namespace TestC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product product)
         {
-            products.Add(product);
-            product.ProductId =
-                products.Select(m => m.ProductId).Max() + 1;
+            context.Products.Add(product);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(long id)
+        //	GET:Products/Edit
+        public ActionResult Edit(long? id)
         {
-            return View(products.Where(
-                m => m.ProductId == id).First());
+            if (id == null)
+            {
+                return new
+                    HttpStatusCodeResult(
+                    HttpStatusCode.BadRequest);
+            }
+            Product product = context.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
-      
+
+        //	POST: Products/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product product)
         {
-            products.Remove(products.Where(
-                c => c.ProductId == product.ProductId).First());
-            products.Add(product);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                context.Entry(product).State =
+                                                   EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(product);
         }
-        public ActionResult Details(long id)
+        //	GET: Details
+        public ActionResult Details(long? id)
         {
-            return View(products.Where(
-                            m => m.ProductId == id).First());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                                HttpStatusCode.BadRequest);
+            }
+            Product product = context.Products.
+                            Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
+        //	GET:	Products/Delete
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                                HttpStatusCode.BadRequest);
+            }
+            Product product = context.Products.
+                Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+        //	POST:	Products/Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            return View(products.Where(
-                            m => m.ProductId == id).First());
-        }
-        [HttpPost]        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Product product)
-        {
-            products.Remove(products.Where(
-                            c => c.ProductId == product.ProductId)
-                            .First());
+            Product product = context.Products.
+                            Find(id);
+            context.Products.Remove(product);
+            context.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }
 
     }
-
-
-
 }

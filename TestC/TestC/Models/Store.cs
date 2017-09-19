@@ -5,15 +5,16 @@ using System.Web;
 
 namespace TestC.Models
 {
-    public class Client
+    public class Store
     {
-        public int ClientId { get; set; }
+        public int StoreId { get; set; }
         public string Name { get; set; }
-        public int Cep { get; set; }
-        public int Cpf { get; set; }
+        public long Fone { get; set; }
+        public int Cep { get; set; }        
         public string Adress { get; set; }
+        public long Cnpj { get; set; }
         public string Email { get; set; }
-        public int Fone { get; set; }
-        
+        public string Site { get; set; }
+
     }
 }
