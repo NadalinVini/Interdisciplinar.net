@@ -4,8 +4,10 @@
     <meta name="viewport" content="width=device-width,
           initial-scale=1.0" charset="utf-8" />
     <title>@ViewBag.Title</title>
+    @*arquivos de css*@
     <link href="@Url.Content("~/content/bootstrap.css")"
           rel="stylesheet" />
+    @RenderSection("styles",false)
 </head>
 <body>
     <div class="container">
@@ -50,8 +52,9 @@
         </div>
     </div>
     <script src="@Url.Content(
-                "~/scripts/jquery-1.10.2.js")"></script>
+                "~/scripts/jquery-3.2.1js")"></script>
     <script src="@Url.Content(
                 "~/scripts/bootstrap.js")"></script>
+    @RenderSection("ScriptPage", false)
 </body>
 </html>
