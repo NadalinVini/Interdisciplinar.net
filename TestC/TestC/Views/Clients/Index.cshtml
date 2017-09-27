@@ -1,7 +1,7 @@
 ﻿@model	IEnumerable<TestC.Models.Client>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Listagem	de	Clients";
+    ViewBag.Title = "Clients list";
 }<div class="panel	panel-primary">
     <div class="panel-heading">
         Relação	de	Clients	registrados
@@ -30,19 +30,19 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.ActionLink("Alterar",
+                            @Html.ActionLink("Change  ",
                                                                                                                                 "Edit", new
                                                                                                                                 {
                                                                                                                                     id =
                                                                                                                                 item.ClientId
                                                                                                                                 })	|
-                            @Html.ActionLink("Detalhes",
+                            @Html.ActionLink("Client Details",
                                                                                                                                 "Details", new
                                                                                                                                 {
                                                                                                                                     id =
                                                                                                                                 item.ClientId
                                                                                                                                 })	|
-                            @Html.ActionLink("Eliminar",
+                            @Html.ActionLink("Delete Client",
                                                                                                                                 "Delete", new
                                                                                                                                 {
                                                                                                                                     id =
@@ -55,7 +55,7 @@
         </table>
     </div>
     <div class="panel-footer	panel-info">
-        @Html.ActionLink("Registrar	um	novo	Clients",
+        @Html.ActionLink("Register a new client",
                                                 "Create", null, new
                                                 {
                                                     @class =
@@ -74,7 +74,10 @@
 				$(document).ready(function () {
 				    $('.table').dataTable({
 				        "order": [[1, "asc"]]
-				    });				    $('li').removeClass("active");				    $('#liClients').addClass("active");
+				    });
+				    $('li').removeClass("active");
+				    $('#liClients').addClass("active");
+
 });
     </script>
 }

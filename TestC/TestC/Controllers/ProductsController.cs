@@ -105,8 +105,11 @@ namespace TestC.Controllers
                             Find(id);
             context.Products.Remove(product);
             context.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            TempData["Message"] = "Product	" +
+                                product.Name.ToUpper() + "	was	removed";
+            return RedirectToAction("Index");            
+        }
+
 
     }
 }

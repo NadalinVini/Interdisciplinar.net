@@ -10,6 +10,8 @@ namespace TestC.Controllers
     public class ClientsController : Controller
     {
         private EFContext context = new EFContext();
+
+
         // GET: Clients
         public ActionResult Index()
         {
@@ -46,7 +48,7 @@ namespace TestC.Controllers
             }
             return View(client);
         }
-        
+
         //	POST: Clients/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,14 +99,17 @@ namespace TestC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
-        {
-            Client client = context.Clients.
-                            Find(id);
-            context.Clients.Remove(client);
-            context.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        {           
+            {
+                Client client = context.Clients.
+                             Find(id);
+                context.Clients.Remove(client);
+                context.SaveChanges();
+                TempData["Message"] = "Client	" +
+                                client.Name.ToUpper() + "	was	removed";
+                return RedirectToAction("Index");
+            }
 
-
+        }       
     }
 }

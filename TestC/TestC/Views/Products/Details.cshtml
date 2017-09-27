@@ -1,58 +1,33 @@
-﻿@model TestC.Models.Product
-
+﻿@model	TestC.Models.Product
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Viewing a Product's details";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Product</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Brand)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Brand)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-    
-        </dl>
+<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Viewing a Product's details
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon
+																												glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Name, new
+           {
+               htmlAttributes
+               = new { @class = "form-control", disabled = "disabled" }
+           })
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer	panel-info">
+        @Html.ActionLink("Change", "Edit", new { id = Model.ProductId }, new { @class = "btn	btn-info" })
+
+        @Html.ActionLink("Return to list of Product", "Index", null, new { @class = "btn	btn-info" })
+    </div>
+</div>

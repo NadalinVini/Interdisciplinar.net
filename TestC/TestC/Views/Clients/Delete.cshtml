@@ -1,80 +1,33 @@
-﻿@model TestC.Models.Client
-
+﻿@model	TestC.Models.Client
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title =
+                    "Viewing a Clients's details";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>Client</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Cep)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Cep)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Cpf)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Adress)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Adress)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Fone)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Fone)
-            </dd>
-    
-        </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Customer data to be removed
     </div>
-</body>
-</html>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon	glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.Name, new{htmlAttributes
+               = new{@class ="form-control",disabled = "disabled"}})
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Remove Client" class="btn btn-danger" />
+            @Html.ActionLink("Return to list of Clients","Index", null,
+           new{@class ="btn	btn-info"})}
+    </div>
+</div>

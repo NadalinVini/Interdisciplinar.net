@@ -1,59 +1,83 @@
-﻿@model IEnumerable<TestC.Models.Product>
-
+﻿@model	IEnumerable<TestC.Models.Product>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Product list";
+}<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Relação	de	Products registrados
+    </div>
+    <div class="panel-body">
+        <table class="table	table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Change ",
+                                                                                                                                "Edit", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.ProductId
+                                                                                                                                })	|
+                            @Html.ActionLink("Product Details",
+                                                                                                                                "Details", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.ProductId
+                                                                                                                                })	|
+                            @Html.ActionLink("Delete Product",
+                                                                                                                                "Delete", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.ProductId
+                                                                                                                                })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer	panel-info">
+        @Html.ActionLink("Register a new product",
+                                                "Create", null, new
+                                                {
+                                                    @class =
+                                                "btn	btn-success"
+                                                })
+    </div>
+</div>
+@section	styles{
+    <link href="@Url.Content(
+						"~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
+@section	ScriptPage	{
+    <script src=" @Url.Content("~/Scripts/DataTables/jquery.dataTables.js") "></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+				$(document).ready(function () {
+				    $('.table').dataTable({
+				        "order": [[1, "asc"]]
+				    });
+				    $('li').removeClass("active");
+				    $('#liProducts').addClass("active");
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New Product", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+});
+    </script>
+}

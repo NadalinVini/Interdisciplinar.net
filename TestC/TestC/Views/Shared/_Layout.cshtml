@@ -24,8 +24,10 @@
         <div class="row">
             <div class="col-xs-3 col-md-3 bg-success">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" class=
-                        "active"><a href="#">Home</a></li>
+                    <li role="presentation">
+                        @Html.ActionLink("Home",
+                        "Index", "Home")
+                    </li>
                     <li role="presentation">
                         @Html.ActionLink("Products",
                         "Index", "Products")</li>
@@ -56,5 +58,6 @@
     <script src="@Url.Content(
                 "~/scripts/bootstrap.js")"></script>
     @RenderSection("ScriptPage", false)
+       
 </body>
 </html>
