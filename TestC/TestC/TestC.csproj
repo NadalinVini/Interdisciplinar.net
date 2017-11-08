@@ -441,11 +441,12 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Products\_ByStore.cshtml" />
     <Content Include="Views\Stores\Create.cshtml" />
-    <Content Include="Views\Stores\Index.cshtml" />
-    <Content Include="Views\Stores\Edit.cshtml" />
-    <Content Include="Views\Stores\Details.cshtml" />
     <Content Include="Views\Stores\Delete.cshtml" />
+    <Content Include="Views\Stores\Details.cshtml" />
+    <Content Include="Views\Stores\Edit.cshtml" />
+    <Content Include="Views\Stores\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,74 +1,30 @@
-﻿@model TestC.Models.Store
-
+﻿@model	TestC.Models.Store
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Viewing a Stores's details";
 }
+<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Viewing a Stores's details
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon
+																												glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Name,new {htmlAttributes 
+               = new {@class = "form-control",disabled = "disabled"}})
 
-<h2>Details</h2>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer	panel-info">
+        @Html.ActionLink("Change", "Edit", new{id =Model.StoreId}, new {@class ="btn	btn-info"})
 
-<div>
-    <h4>Store</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Adress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Adress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cnpj)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Site)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Site)
-        </dd>
-
-    </dl>
+        @Html.ActionLink("Return to list of Stores","Index", null, new{@class ="btn	btn-info"})
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StoreId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -87,8 +87,8 @@ namespace TestC.Controllers
                 return new HttpStatusCodeResult(
                                 HttpStatusCode.BadRequest);
             }
-            Client client = context.Clients.
-                Find(id);
+            Client client = context.Clients
+                .Find(id);
             if (client == null)
             {
                 return HttpNotFound();

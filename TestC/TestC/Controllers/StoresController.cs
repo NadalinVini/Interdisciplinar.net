@@ -88,28 +88,29 @@ namespace TestC.Controllers
                 return new HttpStatusCodeResult(
                                 HttpStatusCode.BadRequest);
             }
-            Store store = context
-                .Stores
-                .Include("Produtos.Client")                .FirstOrDefault(s => s.StoreId == id.Value);
-
+            Store store = context.Stores
+                .Find(id);
             if (store == null)
             {
                 return HttpNotFound();
             }
             return View(store);
         }
-        //	POST:	Stores/Delete
+        //	POST:	Clients/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Store store = context.Stores.
-                            Find(id);
-            context.Stores.Remove(store);
-            context.SaveChanges();
-            TempData["Message"] = "Store	" +
+            {
+                Store store = context.Stores.
+                             Find(id);
+                context.Stores.Remove(store);
+                context.SaveChanges();
+                TempData["Message"] = "Client	" +
                                 store.Name.ToUpper() + "	was	removed";
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
         }
 
 

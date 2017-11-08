@@ -1,69 +1,83 @@
-﻿@model IEnumerable<TestC.Models.Store>
-
+﻿@model	IEnumerable<TestC.Models.Store>
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Stores list";
+}<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Relação	de	Stores	registrados
+    </div>
+    <div class="panel-body">
+        <table class="table	table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StoreId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor( model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StoreId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Change  ",
+                                                                                                                                "Edit", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.StoreId
+                                                                                                                                })	|
+                            @Html.ActionLink("Store Details",
+                                                                                                                                "Details", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.StoreId
+                                                                                                                                })	|
+                            @Html.ActionLink("Delete Store",
+                                                                                                                                "Delete", new
+                                                                                                                                {
+                                                                                                                                    id =
+                                                                                                                                item.StoreId
+                                                                                                                                })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer	panel-info">
+        @Html.ActionLink("Register a new store",
+                                                "Create", null, new
+                                                {
+                                                    @class =
+                                                "btn	btn-success"
+                                                })
+    </div>
+</div>
+@section	styles{
+    <link href="@Url.Content(
+						"~/content/DataTables/css/dataTables.bootstrap.css")"	rel="stylesheet"/>
 }
+@section	ScriptPage	{
+<script	src=" @Url.Content("~/Scripts/DataTables/jquery.dataTables.js")" ></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+				$(document).ready(function () {
+				    $('.table').dataTable({
+				        "order": [[1, "asc"]]
+				    });
+				    $('li').removeClass("active");
+				    $('#liClients').addClass("active");
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cep)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Site)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cnpj)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Site)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StoreId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StoreId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StoreId })
-        </td>
-    </tr>
+});
+    </script>
 }
-
-</table>
