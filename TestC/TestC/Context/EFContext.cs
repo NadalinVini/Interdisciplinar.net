@@ -11,7 +11,7 @@ namespace TestC.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Store> Stores { get; set; }
-        
 
+        public System.Data.Entity.DbSet<TestC.Models.Storage> Storages { get; set; }
     }
 }

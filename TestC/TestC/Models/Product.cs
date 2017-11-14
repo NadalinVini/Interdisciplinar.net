@@ -1,4 +1,6 @@
-﻿namespace TestC.Models
+﻿using System.Collections.Generic;
+
+namespace TestC.Models
 {
     public class Product
     {
@@ -8,11 +10,8 @@
         public string Brand { get; set; }
         public int Price { get; set; }
 
-        public long? StoreId { get; set; }
-        public long? ClientId { get; set; }
-
-        public Client Client { get; set; }
-        public Store Store { get; set; }
+        public virtual ICollection<Client> Client { get; set; }
+        public virtual ICollection<Storage> Storage { get; set; }
 
     }
 }

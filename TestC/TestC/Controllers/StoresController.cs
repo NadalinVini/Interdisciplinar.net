@@ -47,6 +47,9 @@ namespace TestC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ProductId = new SelectList(context.Products.OrderBy(p => p.Name), "ProductId", "Name");
+
             return View(store);
         }
 

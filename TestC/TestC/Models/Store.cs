@@ -15,6 +15,6 @@ namespace TestC.Models
         public long Cnpj { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Storage> Storage { get; set; }
     }
 }

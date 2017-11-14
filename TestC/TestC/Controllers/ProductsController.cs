@@ -16,8 +16,9 @@ namespace TestC.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var produtos = context.Products.Include(c => c.Client).
-                            Include(f => f.Store).OrderBy(n => n.Name);
+            var produtos = context.Products
+                .Include(c => c.Client).
+                            Include(f => f.Storage).OrderBy(n => n.Name);
             return View(produtos);
         }
         // GET: Products/Create
@@ -51,12 +52,12 @@ namespace TestC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(context.Clients.
-            OrderBy(b => b.Name), "CategoriaId", "Nome", product.
-                    ClientId);
-            ViewBag.FabricanteId = new SelectList(context.Stores.
-            OrderBy(b => b.Name), "FabricanteId", "Nome", product.
-            StoreId);
+            //ViewBag.CategoriaId = new SelectList(context.Clients.
+            //OrderBy(b => b.Name), "CategoriaId", "Nome", product.
+            //        ClientId);
+            //ViewBag.FabricanteId = new SelectList(context.Stores.
+            //OrderBy(b => b.Name), "FabricanteId", "Nome", product.
+            //StoreId);
             return View(product);
         }
 
@@ -79,7 +80,8 @@ namespace TestC.Controllers
             {
                 return View(product);
             }
-        }
+        }
+
         //	GET: Details
         public ActionResult Details(long? id)
         {
@@ -89,7 +91,7 @@ namespace TestC.Controllers
                                 BadRequest);
             }
             Product product = context.Products.Where(p => p.ProductId ==
-                          id).Include(c => c.Client).Include(f => f.Store).
+                          id).Include(c => c.Client).Include(f => f.Storage).
                             First();
             if (product == null)
             {
@@ -106,14 +108,15 @@ namespace TestC.Controllers
                                 BadRequest);
             }
             Product product = context.Products.Where(p => p.ProductId ==
-                          id).Include(c => c.Client).Include(f => f.Store).
+                          id).Include(c => c.Client).Include(f => f.Storage).
                             First();
             if (product == null)
             {
                 return HttpNotFound();
             }
             return View(product);
-        }
+        }
+
         //	POST:	Products/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -132,7 +135,8 @@ namespace TestC.Controllers
             {
                 return View();
             }
-        }
+        }
+
 
 
     }
