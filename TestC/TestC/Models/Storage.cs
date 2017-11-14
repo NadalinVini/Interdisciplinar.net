@@ -14,5 +14,6 @@ namespace TestC.Models
         public long StoreId { get; set; }
         public Store Store { get; set; }
         public decimal Amount { get; set; }
+        
     }
 }

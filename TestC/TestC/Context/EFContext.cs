@@ -13,5 +13,9 @@ namespace TestC.Context
         public DbSet<Store> Stores { get; set; }
 
         public System.Data.Entity.DbSet<TestC.Models.Storage> Storages { get; set; }
+
+        public System.Data.Entity.DbSet<TestC.Models.Buy> Buys { get; set; }
+
+        public System.Data.Entity.DbSet<TestC.Models.Category> Categories { get; set; }
     }
 }

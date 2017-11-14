@@ -1,0 +1,74 @@
+﻿@model TestC.Models.Buy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Buy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Storage.StorageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Storage.StorageId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_buy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_buy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Form_Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Form_Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

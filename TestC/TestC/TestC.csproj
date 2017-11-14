@@ -409,10 +409,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\EFContext.cs" />
+    <Compile Include="Controllers\BuysController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\Home.cs" />
     <Compile Include="Controllers\StoragesController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
+    <Compile Include="Models\Buy.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -455,6 +458,11 @@
     <Content Include="Views\Storages\Delete.cshtml" />
     <Content Include="Views\Storages\Details.cshtml" />
     <Content Include="Views\Storages\Edit.cshtml" />
+    <Content Include="Views\Buys\Create.cshtml" />
+    <Content Include="Views\Buys\Delete.cshtml" />
+    <Content Include="Views\Buys\Details.cshtml" />
+    <Content Include="Views\Buys\Edit.cshtml" />
+    <Content Include="Views\Buys\Index.cshtml" />
     <Content Include="Views\Storages\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
