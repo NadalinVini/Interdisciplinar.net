@@ -3,87 +3,95 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
+}<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Compra
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <table class="table	table-striped table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StorageId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date_buy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Form_Payment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Invoice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClientId)
+                    </th>
+                    <th></th>
+                </tr>
 
-}
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StorageId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date_buy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Form_Payment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Invoice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClientId)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BuyId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.BuyId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.BuyId })
+                        </td>
+                    </tr>
+                }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Storage.StorageId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date_buy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Form_Payment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Invoice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClientId)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Storage.StorageId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_buy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Form_Payment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Invoice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClientId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BuyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BuyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BuyId })
-        </td>
-    </tr>
-}
-
-</table>
-@section	styles{
-    <link href="@Url.Content(
+            </table>
+            <div class="panel-footer	panel-info">
+                @Html.ActionLink("Fazer uma compra",
+                                                "Create", null, new
+                                                {
+                                                    @class =
+                                                "btn	btn-success"
+                                                })
+            </div>
+    </div>
+    @section	styles{
+        <link href="@Url.Content(
 						"~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
-}
-@section	ScriptPage	{
-    <script src=" @Url.Content("~/Scripts/DataTables/jquery.dataTables.js") "></script>
-    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
-    <script type="text/javascript">
-				$(document).ready(function () {
-				    $('.table').dataTable({
-				        "order": [[1, "asc"]]
-				    });
-				    $('li').removeClass("active");
-				    $('#liBuys').addClass("active");
+    }
+    @section	ScriptPage	{
+        <script src=" @Url.Content("~/Scripts/DataTables/jquery.dataTables.js") "></script>
+        <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.table').dataTable({
+                    "order": [[1, "asc"]]
+                });
+                $('li').removeClass("active");
+                $('#liBuys').addClass("active");
 
-});
-    </script>
-}
+            });
+        </script>
+    }

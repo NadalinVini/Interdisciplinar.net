@@ -2,45 +2,73 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Storage List";
+}<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Relação	de Produtos registrados no estoque
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <table class="table	table-striped table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StoreId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StoreId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.StorageId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.StorageId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.StorageId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+    </div>
+    <div class="panel-footer	panel-info">
+        @Html.ActionLink("Registrar produto na base",
+                                                "Create", null, new
+                                                {
+                                                    @class =
+                                                "btn	btn-success"
+                                                })
+    </div>
+</div>
+@section	styles{
+    <link href="@Url.Content(
+						"~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
+@section	ScriptPage	{
+    <script src=" @Url.Content("~/Scripts/DataTables/jquery.dataTables.js") "></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+				$(document).ready(function () {
+				    $('.table').dataTable({
+				        "order": [[1, "asc"]]
+				    });
+				    $('li').removeClass("active");
+				    $('#liProducts').addClass("active");
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StoreId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StorageId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StorageId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StorageId })
-        </td>
-    </tr>
-}
-
-</table>
+});
+    </script>
+    }
