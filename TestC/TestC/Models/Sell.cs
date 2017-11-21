@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TestC.Models
 {
-    public class Buy
+    public class Sell
     {
         public long BuyId { get; set; }
         public long Amount { get; set; }
@@ -14,9 +14,8 @@ namespace TestC.Models
         public int Form_Payment { get; set; }
         public int Invoice { get; set; }
         public long ClientId { get; set; }
-        public long StorageId  { get; set; }
 
-        public Storage Storage { get; set; }
+
 
         public Client Client { get; set; }
 

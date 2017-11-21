@@ -1,48 +1,35 @@
-﻿@model TestC.Models.Storage
-
+﻿@model	TestC.Models.Storage
 @{
-    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title =
+                    "Viewing a Deletes's details";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Storage</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StoreId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="panel	panel-primary">
+    <div class="panel-heading">
+        Customer data to be removed
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.StorageId)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon	glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.StorageId, new
+           {
+               htmlAttributes
+               = new { @class = "form-control", disabled = "disabled" }
+           })
+            </div>
         </div>
-    }
+    </div>
+    <div class="panel-footer panel-info">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Remove Storage" class="btn btn-danger" />
+            @Html.ActionLink("Return to list of Products", "Index", null,
+           new { @class = "btn	btn-info" })}
+    </div>
 </div>

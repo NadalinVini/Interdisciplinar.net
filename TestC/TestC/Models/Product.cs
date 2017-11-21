@@ -10,7 +10,6 @@ namespace TestC.Models
         public string Brand { get; set; }
         public int Price { get; set; }
 
-        public virtual ICollection<Client> Client { get; set; }
         public virtual ICollection<Storage> Storage { get; set; }
 
     }

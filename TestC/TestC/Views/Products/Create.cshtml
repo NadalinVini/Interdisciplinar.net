@@ -1,14 +1,14 @@
 ﻿@model	TestC.Models.Product
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Register a new Client";
+    ViewBag.Title = "Register a new Product";
 }
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
         <div class="panel-heading">
-            record of a new Client
+            Record of a new product
         </div>
         <div class="panel-body">
             <div class="form-horizontal">

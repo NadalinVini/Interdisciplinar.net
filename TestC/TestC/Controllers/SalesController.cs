@@ -11,14 +11,14 @@ using TestC.Models;
 
 namespace TestC.Controllers
 {
-    public class BuysController : Controller
+    public class SalesController : Controller
     {
         private EFContext db = new EFContext();
 
         // GET: Buys
         public ActionResult Index()
         {
-            var buys = db.Buys.Include(b => b.Storage);
+            var buys = db.Sales.Include(b => b.Storage);
             return View(buys.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace TestC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buy buy = db.Buys.Find(id);
+            Sell buy = db.Sales.Find(id);
             if (buy == null)
             {
                 return HttpNotFound();
@@ -50,12 +50,12 @@ namespace TestC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BuyId,Amount,Date_buy,Price,Form_Payment,Invoice,ClientId,StorageId")] Buy buy)
+        public ActionResult Create([Bind(Include = "BuyId,Amount,Date_buy,Price,Form_Payment,Invoice,ClientId,StorageId")] Sell buy)
         {
             if (ModelState.IsValid)
             {
                 buy.Date_buy = DateTime.Now;
-                db.Buys.Add(buy);
+                db.Sales.Add(buy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -71,7 +71,7 @@ namespace TestC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buy buy = db.Buys.Find(id);
+            Sell buy = db.Sales.Find(id);
             if (buy == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace TestC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BuyId,Amount,Date_buy,Price,Form_Payment,Invoice,ClientId,StorageId")] Buy buy)
+        public ActionResult Edit([Bind(Include = "BuyId,Amount,Date_buy,Price,Form_Payment,Invoice,ClientId,StorageId")] Sell buy)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace TestC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buy buy = db.Buys.Find(id);
+            Sell buy = db.Sales.Find(id);
             if (buy == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace TestC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Buy buy = db.Buys.Find(id);
-            db.Buys.Remove(buy);
+            Sell buy = db.Sales.Find(id);
+            db.Sales.Remove(buy);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

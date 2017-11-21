@@ -17,8 +17,8 @@ namespace TestC.Controllers
         public ActionResult Index()
         {
             var produtos = context.Products
-                .Include(c => c.Client).
-                            Include(f => f.Storage).OrderBy(n => n.Name);
+                .Include(f => f.Storage)
+                .OrderBy(n => n.Name);
             return View(produtos);
         }
         // GET: Products/Create
@@ -90,9 +90,10 @@ namespace TestC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.
                                 BadRequest);
             }
-            Product product = context.Products.Where(p => p.ProductId ==
-                          id).Include(c => c.Client).Include(f => f.Storage).
-                            First();
+            Product product = context.Products
+                .Where(p => p.ProductId == id)
+                .Include(f => f.Storage)
+                .First();
             if (product == null)
             {
                 return HttpNotFound();
@@ -107,9 +108,10 @@ namespace TestC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.
                                 BadRequest);
             }
-            Product product = context.Products.Where(p => p.ProductId ==
-                          id).Include(c => c.Client).Include(f => f.Storage).
-                            First();
+            Product product = context.Products
+                .Where(p => p.ProductId == id)
+                .Include(f => f.Storage)
+                .First();
             if (product == null)
             {
                 return HttpNotFound();

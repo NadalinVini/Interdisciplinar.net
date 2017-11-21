@@ -15,6 +15,6 @@ namespace TestC.Models
         public string Email { get; set; }
         public int Fone { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Sell> Buys { get; set; }
     }
 }
